@@ -1,0 +1,72 @@
+<script>
+
+var digitRegex = /^[0-9]+$/ 
+var numberRegex = /^\d{10}$/;
+var charRegex = /^[a-z]+$/ 
+var emailRegex = "^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+var data = []
+
+function check(lab,reg){
+    var d = prompt(lab)
+    if(!d.match(reg)){
+        print('plz enter perfect value.')
+        d = check(lab,reg)
+    }
+    return d
+}
+
+function insert(){
+    id = data.length + 1
+    nam = check('Enter Name:',charRegex)
+    number = check('Enter Number:',numberRegex)
+    email = check('Enter Email:',emailRegex)
+    data.push({'id':id,'name':nam,'number':number,'email':email})
+    alert('registration success.')
+}
+
+function search(lab,su){
+    var ip = prompt('Enter '+lab+':')
+    for(i of data)
+    {
+        if(ip == i[su])
+        {
+            for(j in i)
+        {
+           str += i[j]+" - ";
+        }
+        str += '\n'
+    }
+        alert(str)
+    }
+}
+function view(){
+    var str = ''
+    for(i of data)
+    {
+        for(j in i)
+        {
+           str += i[j]+" - ";
+        }
+        str += '\n'
+    }
+    alert(str)
+}
+
+function main(){
+  var a = parseInt(check('enter choice:\n1.Insert\n2.View\n3.Search\n4.Update\n5.Delete\n6.Exit',digitRegex))
+    switch (a) {
+        case 1:
+        insert();
+            break
+        case 2:
+            view()
+        default:
+
+            break;
+    }
+    main()
+
+}
+
+main()
+</script>
